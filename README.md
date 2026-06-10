@@ -27,12 +27,16 @@ This generates the `out/` folder with your static site.
 
 ## Deploy to GitHub Pages
 
-1. Push this repo to GitHub (e.g. `username/portfolio`)
+1. Push this repo to GitHub
 2. Go to **Settings → Pages → Build and deployment**
-3. Set source to **GitHub Actions**
-4. Push to `main` — the workflow in `.github/workflows/deploy.yml` builds and deploys automatically
+3. Set **Source** to **GitHub Actions** (not "Deploy from a branch")
+4. Go to **Settings → Actions → General → Workflow permissions**
+5. Select **Read and write permissions**, then save
+6. Push to `main` — the workflow builds and deploys automatically
 
-Your site will be live at `https://username.github.io/portfolio/`
+Your site will be live at `https://kevinparmar867.github.io/`
+
+If deploy fails with `401 Requires authentication`, Pages is usually not enabled yet or workflow permissions are set to read-only.
 
 ## Local build (GitHub Pages paths)
 

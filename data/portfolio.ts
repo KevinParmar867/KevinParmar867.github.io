@@ -23,6 +23,7 @@ export const portfolio = {
   skills: [
     { name: "JavaScript", category: "Languages" },
     { name: "TypeScript", category: "Languages" },
+    { name: "Rust", category: "Languages" },
     { name: "HTML", category: "Languages" },
     { name: "CSS", category: "Languages" },
     { name: "React", category: "Frontend" },

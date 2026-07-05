@@ -2,6 +2,20 @@
 
 A modern personal portfolio built with Next.js, TypeScript, and Tailwind CSS. Exports as a static site for GitHub Pages.
 
+## Project structure
+
+```
+app/                  # Next.js app router (layout, page, styles)
+components/
+  layout/             # Navbar, Footer
+  sections/           # Page sections (Hero, About, Projects, etc.)
+  ui/                 # Reusable UI (Avatar, FadeIn, TechIcon, etc.)
+  icons.tsx           # All SVG icons (UI + tech brands)
+data/
+  portfolio.ts        # Your content — name, bio, projects, experience
+public/               # Static assets (photo, resume PDF)
+```
+
 ## Quick start
 
 ```bash
@@ -17,13 +31,15 @@ Edit `data/portfolio.ts` to update your name, bio, skills, projects, experience,
 
 Add your resume PDF to `public/resume.pdf` for the download button to work.
 
+Replace `public/owner.png` with your profile photo.
+
 ## Build static site
 
 ```bash
 npm run build
 ```
 
-This generates the `out/` folder with your static site.
+This generates the `out/` folder with your static site (gitignored — CI builds it on deploy).
 
 ## Deploy to GitHub Pages
 
@@ -37,13 +53,3 @@ This generates the `out/` folder with your static site.
 Your site will be live at `https://kevinparmar867.github.io/`
 
 If deploy fails with `401 Requires authentication`, Pages is usually not enabled yet or workflow permissions are set to read-only.
-
-## Local build (GitHub Pages paths)
-
-To test with the same base path used on GitHub Pages:
-
-```bash
-GITHUB_PAGES=true GITHUB_REPOSITORY=username/portfolio npm run build
-npx serve out
-```
-# KevinParmar867.github.io

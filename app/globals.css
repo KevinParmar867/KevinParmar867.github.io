@@ -1,8 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #09090b;
+  --background: #0a0a0b;
   --foreground: #fafafa;
+  --text-body: #d4d4d8;
+  --text-muted: #a1a1aa;
+  --accent: #6366f1;
+  --accent-light: #818cf8;
+  --surface: rgba(255, 255, 255, 0.03);
+  --border: rgba(255, 255, 255, 0.06);
 }
 
 @theme inline {
@@ -17,14 +23,277 @@ body {
   color: var(--foreground);
 }
 
+.text-body {
+  color: var(--text-body);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.section-padding {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding-top: 7.5rem;
+    padding-bottom: 7.5rem;
+  }
+}
+
 ::selection {
-  background-color: rgb(139 92 246 / 0.3);
+  background-color: rgb(99 102 241 / 0.35);
   color: white;
 }
 
-::view-transition-group(*),
-::view-transition-old(*),
-::view-transition-new(*) {
-  animation-duration: 0.25s;
-  animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+/* Subtle dot grid background */
+.bg-grid {
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.04) 1px,
+    transparent 1px
+  );
+  background-size: 32px 32px;
+}
+
+/* Animated gradient orb */
+@keyframes float {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -48%) scale(1.05);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 6s ease-in-out infinite;
+}
+
+/* Scroll-triggered fade animations */
+.fade-in,
+.fade-in-up,
+.fade-in-down {
+  opacity: 0;
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fade-in-up {
+  transform: translateY(24px);
+}
+
+.fade-in-down {
+  transform: translateY(-16px);
+}
+
+.fade-in.is-visible,
+.fade-in-up.is-visible,
+.fade-in-down.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero entrance animations (on load) */
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-animate {
+  animation: hero-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-delay-1 {
+  animation-delay: 0.1s;
+}
+.hero-delay-2 {
+  animation-delay: 0.2s;
+}
+.hero-delay-3 {
+  animation-delay: 0.35s;
+}
+.hero-delay-4 {
+  animation-delay: 0.5s;
+}
+.hero-delay-5 {
+  animation-delay: 0.65s;
+}
+
+/* Tech icon marquee */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Card hover lift */
+.card-hover {
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 12px 40px rgb(99 102 241 / 0.12),
+    0 0 0 1px rgb(99 102 241 / 0.08);
+}
+
+.card-hover-strong:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 16px 48px rgb(99 102 241 / 0.15);
+}
+
+/* Skill icon card glow on hover */
+.skill-card {
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-3px) scale(1.02);
+}
+
+.skill-card:hover .skill-icon-wrap {
+  transform: scale(1.1);
+}
+
+.skill-icon-wrap {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Avatar gradient ring */
+.avatar-ring {
+  position: relative;
+  padding: 3px;
+  border-radius: 1.125rem;
+  background: linear-gradient(
+    135deg,
+    rgb(99 102 241 / 0.6),
+    rgb(139 92 246 / 0.4),
+    rgb(99 102 241 / 0.2)
+  );
+  box-shadow:
+    0 0 40px rgb(99 102 241 / 0.15),
+    0 0 80px rgb(139 92 246 / 0.08);
+}
+
+.avatar-ring::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgb(99 102 241 / 0.3),
+    transparent 50%,
+    rgb(139 92 246 / 0.2)
+  );
+  z-index: -1;
+  filter: blur(12px);
+}
+
+@keyframes avatar-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.avatar-ring > div {
+  position: relative;
+}
+
+.avatar-ring > div::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgb(99 102 241 / 0.25),
+    transparent 40%,
+    rgb(139 92 246 / 0.2)
+  );
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+
+.avatar-float {
+  animation: avatar-float 5s ease-in-out infinite;
+}
+
+.skill-core .skill-icon-wrap {
+  background: rgb(99 102 241 / 0.2);
+  border: 1px solid rgb(99 102 241 / 0.35);
+  box-shadow: 0 0 20px rgb(99 102 241 / 0.1);
+}
+
+.skill-familiar .skill-icon-wrap {
+  background: rgb(255 255 255 / 0.03);
+  border: 1px solid rgb(255 255 255 / 0.08);
+}
+
+.skill-familiar {
+  opacity: 0.9;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in,
+  .fade-in-up,
+  .fade-in-down {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .hero-animate,
+  .animate-float,
+  .animate-pulse-glow,
+  .animate-marquee,
+  .avatar-float {
+    animation: none;
+  }
 }

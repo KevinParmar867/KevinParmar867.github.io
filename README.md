@@ -29,7 +29,7 @@ Open [http://localhost:3000](http://localhost:3000) to preview locally.
 
 Edit `data/portfolio.ts` to update your name, bio, skills, projects, experience, resume, and social links.
 
-Add your resume PDF to `public/resume.pdf` for the download button to work.
+Add your resume PDF to `public/Kevin_Parmar_Resume.pdf` for the download button to work.
 
 Replace `public/owner.png` with your profile photo.
 

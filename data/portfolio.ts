@@ -234,7 +234,7 @@ export const portfolio = {
     },
   ],
   resume: {
-    pdfUrl: "/resume.pdf",
+    pdfUrl: "/Kevin_Parmar_Resume.pdf",
   },
   nav: [
     { label: "Home", href: "#home" },

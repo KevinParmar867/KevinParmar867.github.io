@@ -19,18 +19,27 @@ export function Avatar({ size = "lg", className = "", priority = false }: Avatar
   if (size === "hero") {
     return (
       <div className={`w-full pb-6 lg:pb-10 ${className}`}>
-        <div className="relative aspect-[4/5] w-full max-h-[min(68vh,520px)] overflow-hidden sm:max-w-[340px] lg:max-w-none">
+        <div className="w-full max-w-[340px] lg:ml-auto lg:max-w-[460px]">
           <Image
             src="/owner.png"
             alt={portfolio.name}
-            fill
-            sizes="(max-width: 1024px) 340px, 45vw"
+            width={1207}
+            height={1303}
+            sizes="(max-width: 1024px) 340px, 460px"
             priority={priority}
-            className="object-cover object-[center_18%]"
-          />
-          <div
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/70 to-transparent"
-            aria-hidden
+            className="h-auto w-full"
+            style={{
+              WebkitMaskImage:
+                "linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%), linear-gradient(to bottom, #000 0%, #000 70%, transparent 100%)",
+              maskImage:
+                "linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%), linear-gradient(to bottom, #000 0%, #000 70%, transparent 100%)",
+              WebkitMaskComposite: "source-in",
+              maskComposite: "intersect",
+              WebkitMaskRepeat: "no-repeat",
+              maskRepeat: "no-repeat",
+              WebkitMaskSize: "100% 100%",
+              maskSize: "100% 100%",
+            }}
           />
         </div>
       </div>
